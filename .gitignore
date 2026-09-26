@@ -1,0 +1,38 @@
+# Environment and local config
+.env
+.venv/
+.python-version
+
+# Python caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.pyright/
+
+# Build/package artifacts
+build/
+dist/
+*.egg-info/
+
+# Generated data and extraction outputs
+data/
+scratch/
+*.json
+*.txt
+*.docling.txt
+law.articles.json
+law.pdf.json
+law_table*.txt
+law_text*.txt
+debug*.txt
+
+# Local scratch scripts/files
+test.py
+
+# OS/editor files
+.DS_Store
+.idea/
+.vscode/
