@@ -6,9 +6,11 @@ from pathlib import Path
 from docling_core.types.doc.document import DoclingDocument
 from docling_core.types.doc.items.table.table import TableItem
 
-from legrag.ingestion.native_rows import extract_native_cells, group_cells_by_line
-from legrag.ingestion.normalize import normalize_english
-from legrag.ingestion.schemas import (
+from legrag.config import Settings
+from legrag.preprocess.convert import convert
+from legrag.preprocess.native_rows import extract_native_cells, group_cells_by_line
+from legrag.preprocess.normalize import normalize_english
+from legrag.preprocess.schemas import (
     ARTICLE_RE,
     ARTICLES_PAIR_REF_RE,
     ARTICLES_RANGE_REF_RE,
@@ -512,21 +514,41 @@ def load_doc(path: Path) -> DoclingDocument:
         return DoclingDocument.model_validate(json.load(fp))
 
 
+class Preprocessor:
+    def __init__(self, raw_pdf_path: Path, docling_json_path: Path, articles_json_path: Path) -> None:
+        self.raw_pdf_path = raw_pdf_path
+        self.docling_json_path = docling_json_path
+        self.articles_json_path = articles_json_path
+
+    def run(self) -> list[Article]:
+        self.docling_json_path.parent.mkdir(parents=True, exist_ok=True)
+        self.articles_json_path.parent.mkdir(parents=True, exist_ok=True)
+
+        _log = logging.getLogger(__name__)
+        _log.info("converting %s", self.raw_pdf_path)
+        doc, _, status = convert([self.raw_pdf_path])
+        _log.info("docling conversion status: %s", status)
+
+        with self.docling_json_path.open("w", encoding="utf-8") as fp:
+            fp.write(json.dumps(doc.export_to_dict(), ensure_ascii=False))
+
+        articles = extract_articles_from_rows(iter_native_rows(doc))
+        articles_dicts = [article.__dict__ for article in articles]
+
+        _log.info("extracted %s articles", len(articles))
+        _log.info(f"first article: {articles_dicts[0] if articles else 'none'}")
+
+        with self.articles_json_path.open("w", encoding="utf-8") as fp:
+            fp.write(json.dumps(articles_dicts, ensure_ascii=False, indent=2))
+
+        return articles
+
+
 def main() -> None:
     logging.basicConfig(level=logging.INFO, format="%(levelname)s:%(name)s:%(message)s")
-
-    # Load existing Docling JSON from project root.
-    doc = load_doc(Path("law.pdf.json"))
-
-    # Extract structured article records.
-    articles = extract_articles_from_rows(iter_native_rows(doc))
-
-    articles_dicts = [article.__dict__ for article in articles]
-
-    # Log total count for quick sanity check.
-    _log = logging.getLogger(__name__)
-    _log.info("extracted %s articles", len(articles))
-    _log.info(f"first article: {articles_dicts[0] if articles else 'none'}")
-
-    with open("law.articles.json", "w", encoding="utf-8") as fp:
-        fp.write(json.dumps(articles_dicts, ensure_ascii=False, indent=2))
+    settings = Settings()
+    Preprocessor(
+        raw_pdf_path=settings.raw_pdf_path,
+        docling_json_path=settings.docling_json_path,
+        articles_json_path=settings.articles_json_path,
+    ).run()

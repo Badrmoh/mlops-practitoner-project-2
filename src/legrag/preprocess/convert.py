@@ -14,7 +14,7 @@ from docling_core.types.doc.document import DoclingDocument
 _log = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
 
-def convert(paths: list[Path]) -> Tuple[DoclingDocument, ConfidenceReport, ConversionStatus]:
+def convert(paths: list[Path | str]) -> Tuple[DoclingDocument, ConfidenceReport, ConversionStatus]:
     """
     Call Docling Native PDF pipeline.
     """

@@ -3,8 +3,8 @@ from dataclasses import dataclass
 from statistics import median
 
 from docling_core.types.doc.document import DoclingDocument
-from legrag.ingestion.schemas import NativeTextCell, TextLine
-from legrag.ingestion.normalize import normalize_arabic
+from legrag.preprocess.schemas import NativeTextCell, TextLine
+from legrag.preprocess.normalize import normalize_arabic
 
 
 AR_RE = re.compile(r"[\u0600-\u06FF]")
