@@ -1,0 +1,77 @@
+stages:
+  preprocess:
+    wdir: ..
+    cmd: uv run python dvc/preprocess.py
+    deps:
+    - data/raw/law.pdf
+    - src/legrag/preprocess/
+    - dvc/preprocess.py
+    params:
+    - dvc/params.yaml:
+      - preprocess.raw_pdf_path
+      - preprocess.docling_json_path
+      - preprocess.articles_json_path
+    outs:
+    - data/interim/law.docling.json
+    - data/output/articles.json
+  chunk:
+    cmd: uv run python dvc/chunk.py
+    wdir: ..
+    deps:
+      - data/output/articles.json
+      - src/legrag/indexing/chunk.py
+      - dvc/chunk.py
+    params:
+      - dvc/params.yaml:
+        - chunk.articles_json_path
+        - chunk.chunks_jsonl_path
+        - chunk.max_tokens_per_chunk
+        - chunk.chunk_overlap_tokens
+        - chunk.approx_chars_per_token
+    outs:
+      - data/output/chunks.jsonl
+  embed:
+    cmd: uv run python dvc/embed.py
+    wdir: ..
+    deps:
+      - data/output/chunks.jsonl
+      - src/legrag/indexing/embed.py
+      - dvc/embed.py
+    params:
+      - dvc/params.yaml:
+        - embed.embedding_model
+        - embed.chunks_jsonl_path
+        - embed.embed_manifest_json_path
+        - embed.chroma_persist_path
+    outs:
+      - data/output/embed_manifest.json:
+          cache: false
+      - data/chroma:
+          cache: false
+  eval:
+    cmd: uv run python dvc/eval.py
+    wdir: ..
+    deps:
+      - data/output/embed_manifest.json
+      - data/eval/golden_questions.json
+      - dvc/eval.py
+      - src/legrag/agent/
+      - src/legrag/store.py
+    params:
+      - dvc/params.yaml:
+        - embed.embedding_model
+        - embed.collection_name
+        - embed.chroma_persist_path
+        - eval.golden_questions_path
+        - eval.metrics_json_path
+        - eval.results_json_path
+        - eval.top_k
+        - eval.agent_model
+        - eval.judge_model
+        - eval.distance_threshold
+    metrics:
+      - data/output/ragas_metrics.json:
+          cache: false
+    outs:
+      - data/output/ragas_results.json:
+          cache: false

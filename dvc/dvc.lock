@@ -1,0 +1,135 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: uv run python dvc/preprocess.py
+    deps:
+    - path: data/raw/law.pdf
+      hash: md5
+      md5: 5086ef5f16f15d856278db943e58e948
+      size: 2599703
+    - path: dvc/preprocess.py
+      hash: md5
+      md5: 9a0d8f435f54fb570052c400d710f637
+      size: 777
+    - path: src/legrag/preprocess/
+      hash: md5
+      md5: 0dc1e39cb492d1dd831ac65f8c7d581b.dir
+      size: 91740
+      nfiles: 11
+    params:
+      dvc/params.yaml:
+        preprocess.articles_json_path: data/output/articles.json
+        preprocess.docling_json_path: data/interim/law.docling.json
+        preprocess.raw_pdf_path: data/raw/law.pdf
+    outs:
+    - path: data/interim/law.docling.json
+      hash: md5
+      md5: 50b09fa4e89c6d724ac459ce7b481fd3
+      size: 46471889
+    - path: data/output/articles.json
+      hash: md5
+      md5: ce56ebaa21fd8846d5473879f378ff42
+      size: 1268304
+  chunk:
+    cmd: uv run python dvc/chunk.py
+    deps:
+    - path: data/output/articles.json
+      hash: md5
+      md5: ce56ebaa21fd8846d5473879f378ff42
+      size: 1268304
+    - path: dvc/chunk.py
+      hash: md5
+      md5: 2f2a925ed1672f887954aed4fc49fee7
+      size: 989
+    - path: src/legrag/indexing/chunk.py
+      hash: md5
+      md5: 92d1e88f6c86ddcac2258048c1858a24
+      size: 6954
+    params:
+      dvc/params.yaml:
+        chunk.approx_chars_per_token: 5
+        chunk.articles_json_path: data/output/articles.json
+        chunk.chunk_overlap_tokens: 64
+        chunk.chunks_jsonl_path: data/output/chunks.jsonl
+        chunk.max_tokens_per_chunk: 256
+    outs:
+    - path: data/output/chunks.jsonl
+      hash: md5
+      md5: 264cb4c44731604a07ffb14b42aacadc
+      size: 1779676
+  embed:
+    cmd: uv run python dvc/embed.py
+    deps:
+    - path: data/output/chunks.jsonl
+      hash: md5
+      md5: 264cb4c44731604a07ffb14b42aacadc
+      size: 1779676
+    - path: dvc/embed.py
+      hash: md5
+      md5: f5811246c9c056ef4a16b6a047715d67
+      size: 1530
+    - path: src/legrag/indexing/embed.py
+      hash: md5
+      md5: 55e7223db4450935861ff8d7ce73e0de
+      size: 1864
+    params:
+      dvc/params.yaml:
+        embed.chroma_persist_path: data/chroma
+        embed.chunks_jsonl_path: data/output/chunks.jsonl
+        embed.embed_manifest_json_path: data/output/embed_manifest.json
+        embed.embedding_model: ollama:nomic-embed-text-v2-moe
+    outs:
+    - path: data/chroma
+      hash: md5
+      md5: 98d42d93befb291534dbe4dffdfc124f.dir
+      size: 19166890
+      nfiles: 6
+    - path: data/output/embed_manifest.json
+      hash: md5
+      md5: 985bb6998805ae361df6bac0c445b6b0
+      size: 175
+  eval:
+    cmd: uv run python dvc/eval.py
+    deps:
+    - path: data/eval/golden_questions.json
+      hash: md5
+      md5: 1745cdf4be6d38c1b2fc011c742667d3
+      size: 38621
+    - path: data/output/embed_manifest.json
+      hash: md5
+      md5: 985bb6998805ae361df6bac0c445b6b0
+      size: 175
+    - path: dvc/eval.py
+      hash: md5
+      md5: ec304075d8d895644600d67c6097b9da
+      size: 5478
+    - path: src/legrag/agent/
+      hash: md5
+      md5: 83cf568c32bde791b8020011e6ad4226.dir
+      size: 24261
+      nfiles: 10
+    - path: src/legrag/store.py
+      hash: md5
+      md5: 3daeea1fd4acce862cb17ff72f983707
+      size: 2128
+    params:
+      dvc/params.yaml:
+        embed.chroma_persist_path: data/chroma
+        embed.collection_name: civil_code_cs256_ov64_ac5_101017042026
+        embed.embedding_model: ollama:nomic-embed-text-v2-moe
+        eval.agent_model: deepseek-chat
+        eval.distance_threshold:
+        eval.golden_questions_path: data/eval/golden_questions.json
+        eval.judge_model: deepseek-chat
+        eval.metrics_json_path: data/output/ragas_metrics.json
+        eval.results_json_path: data/output/ragas_results.json
+        eval.top_k: 5
+    outs:
+    - path: data/output/ragas_metrics.json
+      hash: md5
+      md5: ae502627b98797f42bff158618b46b26
+      size: 69
+    - path: data/output/ragas_results.json
+      hash: md5
+      md5: 1c0642be1835867e9f1f7aef257748ed
+      size: 146833

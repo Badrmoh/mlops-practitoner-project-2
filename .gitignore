@@ -37,3 +37,9 @@ test.py
 .DS_Store
 .idea/
 .vscode/
+
+# Local service state
+docker/agentgateway-config/*.db
+docker/agentgateway-config/*.db-*
+s.sh
+src/legrag/agent.py
