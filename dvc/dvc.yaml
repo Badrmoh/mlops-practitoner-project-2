@@ -27,7 +27,6 @@ stages:
         - chunk.chunks_jsonl_path
         - chunk.max_tokens_per_chunk
         - chunk.chunk_overlap_tokens
-        - chunk.approx_chars_per_token
     outs:
       - data/output/chunks.jsonl
   embed:

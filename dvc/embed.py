@@ -15,12 +15,14 @@ def main():
     chroma_persist_path = params["embed"]["chroma_persist_path"]
     embedding_model = params["embed"]["embedding_model"]
     embedding_url = Settings().embedding_url
+    embedding_api_key = Settings().embedding_api_key
 
     embedder = Embedder(
         collection_name,
         chroma_persist_path,
         embedding_url,
         embedding_model,
+        embedding_api_key,
     )
 
     with (REPO_ROOT / params["embed"]["chunks_jsonl_path"]).open("r", encoding="utf-8") as fp:
@@ -32,6 +34,7 @@ def main():
             chunks.append(Chunk(**json.loads(chunk)))
 
     if len(chunks) > 0:
+        embedder.reset_collection()
         embedder.store_in_batches(chunks)
 
         embed_manifest: dict[str,str|int] = {

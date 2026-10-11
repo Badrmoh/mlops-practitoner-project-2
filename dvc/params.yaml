@@ -7,23 +7,9 @@ chunk:
   chunks_jsonl_path: data/output/chunks.jsonl
   max_tokens_per_chunk: 256
   chunk_overlap_tokens: 64
-  approx_chars_per_token: 5
-  sweep:
-    max_tokens_per_chunk:
-    - 256
-    - 512
-    - 1024
-    chunk_overlap_tokens:
-    - 0
-    - 64
-    - 128
-    approx_chars_per_token:
-    - 3
-    - 4
-    - 5
 embed:
-  embedding_model: ollama:nomic-embed-text-v2-moe
-  collection_name: civil_code_cs256_ov64_ac5_101017042026
+  embedding_model: qwen3-embedding:4b
+  collection_name: egyptian_civil_code
   chunks_jsonl_path: data/output/chunks.jsonl
   embed_manifest_json_path: data/output/embed_manifest.json
   chroma_persist_path: data/chroma
@@ -31,7 +17,7 @@ eval:
   golden_questions_path: data/eval/golden_questions.json
   metrics_json_path: data/output/ragas_metrics.json
   results_json_path: data/output/ragas_results.json
-  top_k: 5
-  agent_model: deepseek-chat
-  judge_model: deepseek-chat
+  top_k: 27
+  agent_model: deepseek-v4-pro
+  judge_model: openai/gpt-4o-mini
   distance_threshold:

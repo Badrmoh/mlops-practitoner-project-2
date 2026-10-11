@@ -1,8 +1,9 @@
 import logging
 
+import requests
 from pydantic_ai import Embedder as pyem
 from pydantic_ai.embeddings.openai import OpenAIEmbeddingModel
-from pydantic_ai.providers.ollama import OllamaProvider
+from pydantic_ai.providers.openai import OpenAIProvider
 
 from legrag.indexing.chunk import Chunk
 from legrag.store import ChromaVectorStore
@@ -10,15 +11,45 @@ from legrag.store import ChromaVectorStore
 _log = logging.getLogger(__name__)
 
 class Embedder:
-    def __init__(self, collection_name: str, persist_path: str, embedding_url: str, embedding_model: str):
+    def __init__(
+        self,
+        collection_name: str,
+        persist_path: str,
+        embedding_url: str,
+        embedding_model: str,
+        embedding_api_key: str = "",
+    ):
         self._vector_store = ChromaVectorStore(collection_name, persist_path)
-        self._embedding_url = embedding_url
         self._embedding_model = embedding_model
-        model_name = embedding_model.removeprefix("ollama:")
-        provider = OllamaProvider(base_url=embedding_url.removesuffix("/api/embed") + "/v1")
-        self._pyem: pyem = pyem(model=OpenAIEmbeddingModel(model_name, provider=provider))
+        self._embedding_api_key = embedding_api_key
+        self._uses_ollama_embed_api = "/api/embed" in embedding_url or embedding_model.startswith("ollama:")
+        self._embedding_url = (
+            embedding_url.rstrip("/") + "/api/embed"
+            if self._uses_ollama_embed_api and "/api/embed" not in embedding_url
+            else embedding_url
+        )
+        self._pyem: pyem | None = None
+
+        if self._uses_ollama_embed_api:
+            return
+        provider = OpenAIProvider(
+            base_url=embedding_url,
+            api_key=embedding_api_key,
+        )
+        self._pyem = pyem(model=OpenAIEmbeddingModel(embedding_model, provider=provider))
 
     def embed_batch(self, texts: list[str]) -> list[list[float]]:
+        if self._uses_ollama_embed_api:
+            response = requests.post(
+                self._embedding_url,
+                headers={"Authorization": f"Bearer {self._embedding_api_key}"} if self._embedding_api_key else None,
+                json={"model": self._embedding_model.removeprefix("ollama:"), "input": texts},
+                timeout=120,
+            )
+            response.raise_for_status()
+            return [[float(value) for value in embedding] for embedding in response.json()["embeddings"]]
+
+        assert self._pyem is not None
         embeddings = self._pyem.embed_documents_sync(texts)
         return [list(embedding) for embedding in embeddings.embeddings]
 
@@ -38,3 +69,6 @@ class Embedder:
                 embeddings=batch_embeddings,
                 metadatas=batch_metadatas
             )
+
+    def reset_collection(self) -> None:
+        self._vector_store.reset_collection()

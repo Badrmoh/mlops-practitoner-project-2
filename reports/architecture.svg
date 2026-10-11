@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#f8fafc"/>
+  <style>
+    .box { fill: #ffffff; stroke: #1e293b; stroke-width: 2; rx: 12; }
+    .store { fill: #eef2ff; stroke: #4338ca; stroke-width: 2; }
+    .ops { fill: #ecfdf5; stroke: #047857; stroke-width: 2; }
+    .text { font-family: Arial, sans-serif; font-size: 18px; fill: #0f172a; font-weight: 700; }
+    .small { font-family: Arial, sans-serif; font-size: 14px; fill: #334155; }
+    .arrow { stroke: #475569; stroke-width: 2.5; marker-end: url(#arrow); fill: none; }
+  </style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <text x="40" y="52" class="text" style="font-size:28px">Legal RAG Architecture</text>
+
+  <rect x="40" y="110" width="190" height="90" class="box"/>
+  <text x="70" y="148" class="text">User</text>
+  <text x="70" y="174" class="small">curl / browser</text>
+
+  <rect x="300" y="110" width="210" height="90" class="box"/>
+  <text x="330" y="148" class="text">FastAPI</text>
+  <text x="330" y="174" class="small">/ask /health /reports</text>
+
+  <rect x="580" y="110" width="220" height="90" class="box"/>
+  <text x="610" y="148" class="text">Pydantic AI Agent</text>
+  <text x="610" y="174" class="small">article-cited answers</text>
+
+  <rect x="875" y="80" width="220" height="80" class="box"/>
+  <text x="905" y="118" class="text">Generative LLM</text>
+  <text x="905" y="144" class="small">Ollama or compatible API</text>
+
+  <rect x="875" y="190" width="220" height="80" class="box"/>
+  <text x="905" y="228" class="text">Retriever</text>
+  <text x="905" y="254" class="small">top_k = 27</text>
+
+  <rect x="875" y="320" width="220" height="90" class="box"/>
+  <text x="905" y="358" class="text">Embedding Endpoint</text>
+  <text x="905" y="384" class="small">qwen3-embedding:4b</text>
+
+  <rect x="580" y="320" width="220" height="90" class="store"/>
+  <text x="610" y="358" class="text">Chroma Store</text>
+  <text x="610" y="384" class="small">embedded in Docker image</text>
+
+  <rect x="40" y="500" width="190" height="90" class="ops"/>
+  <text x="70" y="538" class="text">Source PDF</text>
+  <text x="70" y="564" class="small">DVC pointer tracked</text>
+
+  <rect x="300" y="500" width="210" height="90" class="ops"/>
+  <text x="330" y="538" class="text">DVC Pipeline</text>
+  <text x="330" y="564" class="small">preprocess chunk embed eval</text>
+
+  <rect x="580" y="500" width="220" height="90" class="ops"/>
+  <text x="610" y="538" class="text">MLflow + RAGAS</text>
+  <text x="610" y="564" class="small">params + faithfulness</text>
+
+  <rect x="875" y="500" width="220" height="90" class="ops"/>
+  <text x="905" y="538" class="text">GitHub Actions</text>
+  <text x="905" y="564" class="small">test index eval gate push</text>
+
+  <line x1="230" y1="155" x2="300" y2="155" class="arrow"/>
+  <line x1="510" y1="155" x2="580" y2="155" class="arrow"/>
+  <line x1="800" y1="145" x2="875" y2="120" class="arrow"/>
+  <line x1="800" y1="165" x2="875" y2="230" class="arrow"/>
+  <line x1="985" y1="270" x2="985" y2="320" class="arrow"/>
+  <line x1="875" y1="365" x2="800" y2="365" class="arrow"/>
+  <line x1="230" y1="545" x2="300" y2="545" class="arrow"/>
+  <line x1="510" y1="545" x2="580" y2="545" class="arrow"/>
+  <line x1="800" y1="545" x2="875" y2="545" class="arrow"/>
+  <line x1="405" y1="500" x2="650" y2="410" class="arrow"/>
+  <line x1="690" y1="500" x2="690" y2="410" class="arrow"/>
+</svg>

@@ -18,7 +18,6 @@ def main() -> None:
     settings = Settings(
         max_tokens_per_chunk=chunk_params["max_tokens_per_chunk"],
         chunk_overlap_tokens=chunk_params["chunk_overlap_tokens"],
-        approx_chars_per_token=chunk_params["approx_chars_per_token"],
     )
 
     chunks = Chunker(settings).create_chunks(articles)

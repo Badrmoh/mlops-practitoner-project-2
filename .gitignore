@@ -18,7 +18,7 @@ dist/
 *.egg-info/
 
 # Generated data and extraction outputs
-data/
+data/*
 scratch/
 *.json
 *.txt
@@ -43,3 +43,11 @@ docker/agentgateway-config/*.db
 docker/agentgateway-config/*.db-*
 s.sh
 src/legrag/agent.py
+
+# DVC metadata and review artifacts committed despite broad local data ignores
+!data/raw/
+!data/raw/.gitignore
+data/raw/*.dvc
+!data/raw/law.pdf.dvc
+!data/output/
+!data/output/.gitignore
