@@ -11,9 +11,11 @@ class LegalRetriever:
         persist_path: str,
         embedding_url: str,
         embedding_model: str,
+        embedding_api_key: str = "",
     ) -> None:
         self._embedding_url = embedding_url
         self._embedding_model = embedding_model
+        self._embedding_api_key = embedding_api_key
         self._vector_store = ChromaVectorStore(collection_name, persist_path)
 
     def retrieve(
@@ -35,7 +37,8 @@ class LegalRetriever:
     def _embed_query(self, query: str) -> list[float]:
         response = requests.post(
             self._embedding_url,
-            json={"model": self._embedding_model, "input": query},
+            headers={"Authorization": f"Bearer {self._embedding_api_key}"} if self._embedding_api_key else None,
+            json={"model": self._embedding_model.removeprefix("ollama:"), "input": query},
             timeout=60,
         )
         response.raise_for_status()
