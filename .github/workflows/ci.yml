@@ -35,32 +35,11 @@ jobs:
         run: uv run pytest
 
       - name: Download raw PDF
+        env:
+          LEGRAG_RAW_PDF_URL: ${{ vars.LEGRAG_RAW_PDF_URL || 'https://sadanykhalifa.com/uploads/Laws/1576751803.pdf' }}
         run: |
-          uv run python - <<'PY'
-          from pathlib import Path
-
-          import requests
-          import yaml
-
-          from legrag.config import REPO_ROOT, Settings
-
-          raw_pdf_url = Settings().raw_pdf_url
-          if not raw_pdf_url:
-              print("raw_pdf_url is not set; skipping raw PDF download")
-              raise SystemExit(0)
-
-          with (REPO_ROOT / "dvc/params.yaml").open("r", encoding="utf-8") as fp:
-              params = yaml.safe_load(fp) or {}
-
-          raw_pdf_path = Path(params["preprocess"]["raw_pdf_path"])
-          raw_pdf_path = raw_pdf_path if raw_pdf_path.is_absolute() else REPO_ROOT / raw_pdf_path
-          raw_pdf_path.parent.mkdir(parents=True, exist_ok=True)
-
-          response = requests.get(raw_pdf_url, timeout=120)
-          response.raise_for_status()
-          raw_pdf_path.write_bytes(response.content)
-          print(f"Downloaded raw PDF to {raw_pdf_path}")
-          PY
+          mkdir -p data/raw
+          curl --fail --location --show-error "$LEGRAG_RAW_PDF_URL" --output data/raw/law.pdf
 
       - name: Rebuild index artifacts
         env:
