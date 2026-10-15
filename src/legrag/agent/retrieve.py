@@ -1,7 +1,27 @@
+from typing import Any
+
 import requests
 
 from legrag.agent.schemas import RetrievedChunk
 from legrag.store import ChromaVectorStore
+
+
+def embedding_request_url(embedding_url: str) -> str:
+    embedding_url = embedding_url.rstrip("/")
+    if embedding_url.endswith("/api/embed") or embedding_url.endswith("/embeddings"):
+        return embedding_url
+    return f"{embedding_url}/embeddings"
+
+
+def parse_embedding_response(body: dict[str, Any]) -> list[float]:
+    if "embeddings" in body:
+        embedding = body["embeddings"][0]
+    elif "data" in body:
+        embedding = body["data"][0]["embedding"]
+    else:
+        raise ValueError("Embedding response did not include 'embeddings' or 'data'")
+
+    return [float(value) for value in embedding]
 
 
 class LegalRetriever:
@@ -13,7 +33,7 @@ class LegalRetriever:
         embedding_model: str,
         embedding_api_key: str = "",
     ) -> None:
-        self._embedding_url = embedding_url
+        self._embedding_url = embedding_request_url(embedding_url)
         self._embedding_model = embedding_model
         self._embedding_api_key = embedding_api_key
         self._vector_store = ChromaVectorStore(collection_name, persist_path)
@@ -42,10 +62,9 @@ class LegalRetriever:
             timeout=60,
         )
         response.raise_for_status()
-        embedding = response.json()["embeddings"][0]
-        return [float(value) for value in embedding]
+        return parse_embedding_response(response.json())
 
-    def _to_retrieved_chunk(self, result: dict) -> RetrievedChunk:
+    def _to_retrieved_chunk(self, result: dict[str, Any]) -> RetrievedChunk:
         metadata = result["metadata"]
         referenced_articles = metadata.get("referenced_articles") or []
         if referenced_articles == "none":

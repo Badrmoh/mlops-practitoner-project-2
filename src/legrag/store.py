@@ -3,13 +3,15 @@ from typing import Protocol, cast
 import chromadb
 from chromadb.api.types import Embeddings, Metadatas
 
+Metadata = dict[str, str | int | bool | float | None]
+
 
 class VectorStore(Protocol):
     def upsert(self,
                 ids: list[str],
                 texts: list[str],
-                embeddings: Embeddings,
-                metadatas: list[Metadatas]) -> None:
+                embeddings: list[list[float]],
+                metadatas: list[Metadata]) -> None:
         ...
 
     def search(
@@ -38,7 +40,7 @@ class ChromaVectorStore:
                 ids: list[str],
                 texts: list[str],
                 embeddings: list[list[float]],
-                metadatas: list[dict[str, str | int | bool | float | None]]) -> None:
+                metadatas: list[Metadata]) -> None:
         self.collection.upsert(
             ids=ids,
             documents=texts,

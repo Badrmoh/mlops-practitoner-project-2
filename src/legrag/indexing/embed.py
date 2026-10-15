@@ -10,6 +10,11 @@ from legrag.store import ChromaVectorStore
 
 _log = logging.getLogger(__name__)
 
+
+def openai_embedding_base_url(embedding_url: str) -> str:
+    return embedding_url.removesuffix("/embeddings").rstrip("/")
+
+
 class Embedder:
     def __init__(
         self,
@@ -22,7 +27,7 @@ class Embedder:
         self._vector_store = ChromaVectorStore(collection_name, persist_path)
         self._embedding_model = embedding_model
         self._embedding_api_key = embedding_api_key
-        self._uses_ollama_embed_api = "/api/embed" in embedding_url or embedding_model.startswith("ollama:")
+        self._uses_ollama_embed_api = "/api/embed" in embedding_url
         self._embedding_url = (
             embedding_url.rstrip("/") + "/api/embed"
             if self._uses_ollama_embed_api and "/api/embed" not in embedding_url
@@ -33,7 +38,7 @@ class Embedder:
         if self._uses_ollama_embed_api:
             return
         provider = OpenAIProvider(
-            base_url=embedding_url,
+            base_url=openai_embedding_base_url(embedding_url),
             api_key=embedding_api_key,
         )
         self._pyem = pyem(model=OpenAIEmbeddingModel(embedding_model, provider=provider))
@@ -57,7 +62,10 @@ class Embedder:
                         batch_size: int = 128):
         _log.info(f"Storing {len(chunks)} chunks in batches of {batch_size}")
         for start in range(0, len(chunks), batch_size):
-            batch = chunks[start:start + batch_size]
+            batch = []
+            for b in chunks[start:start + batch_size]:
+                if b.text:
+                    batch.append(b)
             batch_embeddings = self.embed_batch([chunk.text for chunk in batch])
             batch_texts = [chunk.text for chunk in batch]
             batch_metadatas = [chunk.metadata for chunk in batch]
