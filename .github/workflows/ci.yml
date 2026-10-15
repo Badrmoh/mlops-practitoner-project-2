@@ -56,7 +56,9 @@ jobs:
           LEGRAG_LLM_BASE_URL: ${{ secrets.LEGRAG_LLM_BASE_URL }}
           LEGRAG_LLM_API_KEY: ${{ secrets.LEGRAG_LLM_API_KEY }}
         run: uv run dvc --cd dvc repro eval
-        
+
+      - name: Print RAGAS metrics
+        run: cat data/output/ragas_metrics.json
 
       - name: Gate RAGAS faithfulness
         run: >
