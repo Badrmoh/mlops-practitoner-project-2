@@ -1,0 +1,78 @@
+name: CI
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  test-build-push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Set up Python
+        run: uv python install 3.13
+
+      - name: Install dependencies
+        run: uv sync --all-extras --dev
+
+      - name: Lint/typecheck
+        run: >
+          uv run pyright
+          src
+          tests
+          dvc
+
+      - name: Test
+        run: uv run pytest
+
+      - name: Rebuild index artifacts
+        env:
+          LEGRAG_EMBEDDING_BASE_URL: ${{ secrets.LEGRAG_EMBEDDING_BASE_URL }}
+          LEGRAG_EMBEDDING_MODEL: ${{ secrets.LEGRAG_EMBEDDING_MODEL }}
+          LEGRAG_EMBEDDING_API_KEY: ${{ secrets.LEGRAG_EMBEDDING_API_KEY }}
+        run: uv run dvc --cd dvc repro preprocess chunk embed
+
+      - name: Evaluate RAG faithfulness
+        env:
+          LEGRAG_EMBEDDING_BASE_URL: ${{ secrets.LEGRAG_EMBEDDING_BASE_URL }}
+          LEGRAG_EMBEDDING_MODEL: ${{ secrets.LEGRAG_EMBEDDING_MODEL }}
+          LEGRAG_EMBEDDING_API_KEY: ${{ secrets.LEGRAG_EMBEDDING_API_KEY }}
+          LEGRAG_LLM_BASE_URL: ${{ secrets.LEGRAG_LLM_BASE_URL }}
+          LEGRAG_LLM_API_KEY: ${{ secrets.LEGRAG_LLM_API_KEY }}
+        run: uv run dvc --cd dvc repro eval
+        
+
+      - name: Gate RAGAS faithfulness
+        run: >
+          uv run python -c
+          "import json; m=json.load(open('data/output/ragas_metrics.json')); score=float(m['ragas_faithfulness']); assert score >= 0.75, f'RAGAS faithfulness {score:.3f} < 0.75'"
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GHCR
+        if: github.event_name == 'push'
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build Docker image
+        if: github.event_name != 'push'
+        run: docker buildx bake -f docker-bake.hcl app
+
+      - name: Build and push Docker image
+        if: github.event_name == 'push'
+        run: >
+          docker buildx bake -f docker-bake.hcl app --push
+          --set app.tags=ghcr.io/${{ github.repository }}/legrag:${{ github.sha }},ghcr.io/${{ github.repository }}/legrag:latest
