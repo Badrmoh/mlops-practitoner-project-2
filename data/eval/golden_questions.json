@@ -1,0 +1,402 @@
+[
+  {
+    "id": "article-12-q1",
+    "article_number": 12,
+    "citation": "Egyptian Civil Code, Article 12",
+    "question": "Which law governs the fundamental conditions for the validity of marriage?",
+    "answer": "The fundamental conditions for the validity of marriage are governed by the national law of each spouse.",
+    "source_text_en": "The fundamental conditions relating to the validity of marriage are governed by the national law of each of the two spouses."
+  },
+  {
+    "id": "article-26-q1",
+    "article_number": 26,
+    "citation": "Egyptian Civil Code, Article 26",
+    "question": "How is the applicable law determined when a state has several legal systems?",
+    "answer": "When the applicable law is that of a state with several legal systems, the applicable law is determined by that state's internal law.",
+    "source_text_en": "When, in accordance with the preceding provisions, it appears that the law to be applied is the law of a state in which several legal systems exist, the law applicable shall be determined by the internal law of that state."
+  },
+  {
+    "id": "article-87-q1",
+    "article_number": 87,
+    "citation": "Egyptian Civil Code, Article 87",
+    "question": "What property forms part of the public domain?",
+    "answer": "Immovable and movable property owned by the State or other public juristic persons and allocated for public utility, whether in fact or by law or decree, forms part of the public domain.",
+    "source_text_en": "Immovable and movable property owned by the State or other public juristic persons and allocated either in fact or by virtue of a law or a decree for purposes of public utility, forms part of the public domain. Such immovable and movable property is not alienable, is not liable to seizure nor to acquisition by prescription."
+  },
+  {
+    "id": "article-96-q1",
+    "article_number": 96,
+    "citation": "Egyptian Civil Code, Article 96",
+    "question": "What is the effect of an acceptance that modifies the offer?",
+    "answer": "An acceptance that goes beyond the offer or adds a restriction or modification is treated as a rejection containing a new offer.",
+    "source_text_en": "An acceptance that goes beyond the offer, or that is accompanied by a restriction or modification, is deemed to be a rejection comprising a new offer."
+  },
+  {
+    "id": "article-117-q1",
+    "article_number": 117,
+    "citation": "Egyptian Civil Code, Article 117",
+    "question": "When may the court appoint a judicial adviser for a person with certain infirmities?",
+    "answer": "If a person is deaf and dumb, deaf and blind, or blind and dumb and cannot express his will because of the infirmity, the court may appoint a judicial adviser to assist with necessary acts in his interests.",
+    "source_text_en": "If a person is deaf and dumb, deaf and blind or blind and dumb, and cannot, by reason of his infirmity, express his will, the court may appoint a judicial adviser to assist him in connection with such acts as may be necessary in his interests. An act for which the assistance of a judicial adviser has been ordered is voidable, if the act is performed by the person provided with a judicial adviser without the assistance of such adviser, after the registration of the decision providing for such assistance."
+  },
+  {
+    "id": "article-155-q1",
+    "article_number": 155,
+    "citation": "Egyptian Civil Code, Article 155",
+    "question": "When may a stipulator revoke a stipulation for a third party?",
+    "answer": "The stipulator may revoke the stipulation before the beneficiary informs the debtor or stipulator that he wishes to benefit from it, provided revocation is not contrary to the spirit of the contract.",
+    "source_text_en": "The stipulator himself, but not his creditors or heirs, may revoke the stipulation for a third party, provided that the revocation is made before the beneficiary advises the debtor or the stipulator of his wish to have the benefit of the stipulation, and that the revocation is not contrary to the spirit of the contract. In the absence of any express or implied agreement to the contrary, the revocation does not liberate the debtor vis-a-vis the stipulator. The stipulator may substitute a new beneficiary in the place of the former beneficiary, or may retain for himself the benefit of the stipulation."
+  },
+  {
+    "id": "article-161-q1",
+    "article_number": 161,
+    "citation": "Egyptian Civil Code, Article 161",
+    "question": "When may a party to a bilateral contract abstain from performance?",
+    "answer": "When correlative obligations are due, either party may abstain from performing if the other party does not perform his obligation.",
+    "source_text_en": "When, in the case of bilateral contract, correlative obligations are due for performance, either of the contracting parties may abstain from the performance of his obligation, if the other party does not perform his obligation."
+  },
+  {
+    "id": "article-189-q1",
+    "article_number": 189,
+    "citation": "Egyptian Civil Code, Article 189",
+    "question": "Can voluntary agency exist when the agent also manages his own affairs?",
+    "answer": "Yes. Voluntary agency exists when the agent manages another's affairs while looking after his own business if the two businesses are connected so that one cannot be managed separately from the other.",
+    "source_text_en": "Voluntary agency also exists even when a voluntary agent manages the affairs of another person whilst at the same time looking after his own business, because of a connection between the two businesses of such a kind that one of them cannot be managed separately from the other."
+  },
+  {
+    "id": "article-219-q1",
+    "article_number": 219,
+    "citation": "Egyptian Civil Code, Article 219",
+    "question": "How is a debtor formally summoned?",
+    "answer": "A debtor is formally summoned by a court summons or equivalent act, by post as provided in procedural law, or by an agreement that default occurs automatically after a time period expires.",
+    "source_text_en": "A debtor is formally summoned by a summons served through the court or by an equivalent act. The summons may be by post in the manner provided for in the Code de Procedure or may result from an agreement stipulating that the debtor shall be considered to be in default by the mere fact of the expiration of the time period without any other formality being required."
+  },
+  {
+    "id": "article-222-q1",
+    "article_number": 222,
+    "citation": "Egyptian Civil Code, Article 222",
+    "question": "Does compensation include moral prejudice?",
+    "answer": "Yes. Damages include compensation for moral prejudice. The right to compensation for moral prejudice cannot be transmitted to a third party unless fixed by agreement or made the subject of legal proceedings. The judge may award such compensation only to spouses and relatives up to the second degree for grief caused by the victim's death.",
+    "source_text_en": "Damages also include compensation for moral prejudice. The right to compensation for moral prejudice cannot, however, be transmitted to a third party, unless it has been fixed by agreement or unless it has been the subject of legal proceedings. The judge may award compensation for moral prejudice only to spouses and to relatives up to the second degree, by reason of grief caused to them by the death of the victim."
+  },
+  {
+    "id": "article-258-q1",
+    "article_number": 258,
+    "citation": "Egyptian Civil Code, Article 258",
+    "question": "May an insolvent debtor dispose of property without creditor consent?",
+    "answer": "Yes, if he disposes of it at the normal price and the purchaser deposits the price at the court treasury for distribution among creditors.",
+    "source_text_en": "A debtor may dispose of his property, even without the consent of his creditors, provided that he does so at its normal price and that this price is deposited by the purchaser at the Caisse du Tribunal for division in accordance with the procedure for distribution. If the price is less than the normal price, the alienation will be void as against creditors, unless the purchaser deposits, in addition to the purchase price, a sum representing the difference between the purchase price and the normal price."
+  },
+  {
+    "id": "article-269-q1",
+    "article_number": 269,
+    "citation": "Egyptian Civil Code, Article 269",
+    "question": "What happens when a resolutory condition is realized?",
+    "answer": "When a resolutory condition is realized, the obligation is extinguished and the creditor must restitute what he received. If restitution is impossible for a cause for which he is responsible, he is liable in damages. Acts of management carried out by the creditor remain valid despite realization of the condition.",
+    "source_text_en": "An obligation is extinguished when the resolutory condition is realized. The creditor must restitute that which he has received: if restitution is impossible by reason of a cause for which he is responsible, he will be liable in damages. Acts of management carried out by a creditor shall retain their validity notwithstanding the realization of the condition."
+  },
+  {
+    "id": "article-286-q1",
+    "article_number": 286,
+    "citation": "Egyptian Civil Code, Article 286",
+    "question": "What is the effect of novation with one joint and several debtor?",
+    "answer": "Novation between the creditor and one joint and several debtor releases the other co-debtors unless the creditor reserves his rights against them.",
+    "source_text_en": "Novation of a debt between the creditor and one of the . joint and several debtors releases other codebtors unless the creditor has reserved his rights against them."
+  },
+  {
+    "id": "article-308-q1",
+    "article_number": 308,
+    "citation": "Egyptian Civil Code, Article 308",
+    "question": "What does an assignor warrant in an assignment for value?",
+    "answer": "Unless agreed otherwise, the assignor in an assignment for value warrants only the existence of the assigned right at the time of assignment.",
+    "source_text_en": "In the case of an assignment for valuable consideration, the assignor, in the absence of an agreement to the contrary, only warrants the existence of the right assigned at the moment of the assignment. When, however, the assignment is not for valuable consideration, the assignor does not even warrant the existence of the right."
+  },
+  {
+    "id": "article-339-q1",
+    "article_number": 339,
+    "citation": "Egyptian Civil Code, Article 339",
+    "question": "When is an actual tender equivalent to payment for the debtor?",
+    "answer": "An actual tender is equivalent to payment when followed by a deposit made as prescribed by procedure or an equivalent measure, provided the creditor accepts it or a final judgment recognizes it as valid.",
+    "source_text_en": "The actual tender of the thing due is equivalent to payment, in so far as the debtor is concerned, when it is followed by a deposit made in the manner prescribed in the Code of Procedure, or by any other equivalent measure, provided that it is accepted by the creditor or recognized as valid by a final judgment."
+  },
+  {
+    "id": "article-359-q1",
+    "article_number": 359,
+    "citation": "Egyptian Civil Code, Article 359",
+    "question": "What is delegation of debt?",
+    "answer": "Delegation occurs when a debtor procures his creditor's acceptance of a third party who undertakes to pay in the debtor's place.",
+    "source_text_en": "There is delegation when a debtor procures the acceptance by his creditor of a third party who undertakes to pay in his stead. Delegation does not necessarily infer the existence of a previous debt between the debtor and such third party."
+  },
+  {
+    "id": "article-368-q1",
+    "article_number": 368,
+    "citation": "Egyptian Civil Code, Article 368",
+    "question": "Can a debtor set up compensation after accepting assignment of a debt without reserve?",
+    "answer": "No. A debtor who accepted the assignment without reserve cannot set up compensation against the assignee that he could have used before acceptance; he can only enforce his claim against the assignor.",
+    "source_text_en": "When a creditor has assigned his debt to a third party, the debtor who has consented to the assignment without reserve, cannot set up compensation against the assignee, which he had the right to set up before he consented to the assignment; he can only enforce his claim against the assignor. But a debtor who has not accepted an assignment which has been notified to him, may, notwithstanding the assignment, set up compensation."
+  },
+  {
+    "id": "article-422-q1",
+    "article_number": 422,
+    "citation": "Egyptian Civil Code, Article 422",
+    "question": "When is a sale subject to tasting considered complete?",
+    "answer": "The purchaser may accept the thing sold if he sees fit, but must declare acceptance within the agreed or customary time; the sale is complete only from that declaration.",
+    "source_text_en": "In a sale made subject to tasting, the purchaser may accept the thing sold if he sees fit, but he must declare his acceptance within the time fixed by the agreement or by custom. The sale will be considered complete only from the date of such declaration."
+  },
+  {
+    "id": "article-437-q1",
+    "article_number": 437,
+    "citation": "Egyptian Civil Code, Article 437",
+    "question": "What happens if the thing sold perishes before delivery due to a cause beyond the vendor's control?",
+    "answer": "The sale is dissolved and the price is refunded to the purchaser, unless the purchaser had been summoned to take delivery before the loss.",
+    "source_text_en": "If the thing sold perishes before delivery as a result of a cause beyond the control of the vendor, the sale shall be dissolved and the price refunded to the purchaser, unless he was summoned to take delivery before the loss."
+  },
+  {
+    "id": "article-474-q1",
+    "article_number": 474,
+    "citation": "Egyptian Civil Code, Article 474",
+    "question": "When does the sale of an inheritance affect third parties?",
+    "answer": "The transfer of rights in an inheritance sale affects third parties only after the required formalities for transferring each right have been fulfilled.",
+    "source_text_en": "In the sale of an inheritance, the transfer of rights comprised therein will have no effect as regards third parties, unless the necessary formalities for the transfer of each of these rights have been fulfilled. If the law provides for specific formalities for the transfer of these rights between the parties, such formalities should also be fulfilled."
+  },
+  {
+    "id": "article-491-q1",
+    "article_number": 491,
+    "citation": "Egyptian Civil Code, Article 491",
+    "question": "What rules apply if a gift concerns a specific thing not owned by the donor?",
+    "answer": "If the gift is of a definite specific thing not owned by the donor, it is governed by the provisions of Articles 466 and 467.",
+    "source_text_en": "If the gift is of a definite and specific thing which does not belong to the donor, it is governed by the provisions . of Articles 466 and 467."
+  },
+  {
+    "id": "article-501-q1",
+    "article_number": 501,
+    "citation": "Egyptian Civil Code, Article 501",
+    "question": "What are examples of reasonable grounds for revoking a gift?",
+    "answer": "Reasonable grounds include serious ingratitude by the donee toward the donor or one of his relatives; the donor becoming unable to maintain himself according to his social position or pay legally owed alimony; a child being born to the donor after the gift and remaining alive at revocation; or a child the donor believed dead at the time of donation being discovered alive.",
+    "source_text_en": "There are, in particular, reasonable grounds for the revocation of a gift: a if the donee has failed in his duties towards the donor or one of his relatives, and such failure constitutes serious ingratitude on his part; b if the donor has become unable to maintain himself in accordance with his social position or to meet an obligation to pay alimony which he is legally bound to pay to another person; c in the event of a child being born to the donor after the donation, and still being alive at the time of revocation, or if the donor had a child which he believed dead at the time of the donation, which child is discovered to be still alive."
+  },
+  {
+    "id": "article-539-q1",
+    "article_number": 539,
+    "citation": "Egyptian Civil Code, Article 539",
+    "question": "What must the lender do under a loan for consumption?",
+    "answer": "The lender must deliver the thing that is the object of the contract and cannot demand return of its equivalent until the end of the loan.",
+    "source_text_en": "The lender must deliver to the borrower the thing which is the object of the contract and cannot claim the return of its equivalent until the end of the loan. If the thing perishes before its delivery to the borrower, the loss falls on the lender."
+  },
+  {
+    "id": "article-545-q1",
+    "article_number": 545,
+    "citation": "Egyptian Civil Code, Article 545",
+    "question": "Can someone undertake to supply a periodic prestation in perpetuity?",
+    "answer": "Yes. A person may undertake to supply another and his successors in perpetuity with periodic money or a fixed quantity of fungibles, by contract or will.",
+    "source_text_en": "An undertaking may be given to supply in perpetuity a person and after him his successors with a periodical prestation consisting of a sum of money or a fixed quantity of other fungibles. This obligation may be assumed by contract for or without valuable consideration, or by will. When the prestation is made by contract for valuable consideration, it is subject as regards the rate of interest, to the rules governing loans on interest."
+  },
+  {
+    "id": "article-572-q1",
+    "article_number": 572,
+    "citation": "Egyptian Civil Code, Article 572",
+    "question": "What must the lessee do if a third party claims incompatible rights?",
+    "answer": "The lessee must immediately notify the lessor and may demand dismissal from the case so proceedings continue solely against the lessor.",
+    "source_text_en": "If a third party claims to have rights incompatible with those derived by the lessee from the agreement of lease the lessee shall forthwith give notice to the lessor of such claim and shall be entitled to demand that he be dismissed from the case. In which event proceedings will be taken solely against the lessor. If, as a result of such a claim, the lessee is effectively deprived of the enjoyment to which he is entitled in accordance with the agreement of lease, he may, in accordance with the circumstances, claim resiliation of the lease or a reduction of rent together with payment of damages if damages are due."
+  },
+  {
+    "id": "article-603-q1",
+    "article_number": 603,
+    "citation": "Egyptian Civil Code, Article 603",
+    "question": "Does insolvency of the lessee make future rents immediately due?",
+    "answer": "No. Insolvency does not make rents not yet due immediately payable, though the lessor may seek rescission unless adequate security is provided in reasonable time.",
+    "source_text_en": "The insolvency of the lessee does not render immediately payable rents that have not become due. The lessor, however, may claim resiliation of the lease, unless he is provided within a reasonable time with securities guaranteeing the payment of rent not due. The lessee may also, if he is not given authority to assign the lease or to sub-let the property, claim resiliation of the lease on payment of equitable compensation."
+  },
+  {
+    "id": "article-606-q1",
+    "article_number": 606,
+    "citation": "Egyptian Civil Code, Article 606",
+    "question": "Can the lessee oppose a new owner with rent paid in advance?",
+    "answer": "The lessee cannot set up rent paid in advance against a new owner if the new owner proves the lessee knew or should have known of the ownership transfer at the time of payment.",
+    "source_text_en": "The lessee cannot set up rent paid in advance against a new owner, if the new owner proves that at the time of payment the lessee knew or should necessarily have known of the transfer of ownership. Failing proof thereof, the new owner has only a remedy against the lessor."
+  },
+  {
+    "id": "article-643-q1",
+    "article_number": 643,
+    "citation": "Egyptian Civil Code, Article 643",
+    "question": "When does a loan for use come to an end?",
+    "answer": "A loan for use ends when the agreed term expires, or if no term is fixed, when the thing has served the purpose for which it was lent. If there is no way to fix the term, the lender may demand termination at any time. The borrower may restitute the thing before the end of the loan, but if early restitution prejudices the lender, he cannot be compelled to accept it.",
+    "source_text_en": "The loan for use comes to an end upon the expiration of the term agreed and, in default of such term being fixed, when the thing has served the purpose for which it was lent. If there is no way by which the term of the loan for use can be fixed, the lender may demand its termination at any time. The borrower may, in all cases, restitute the thing lent before the end of the loan. If, however, such restitution is prejudicial to the lender, he cannot be compelled to accept the thing."
+  },
+  {
+    "id": "article-664-q1",
+    "article_number": 664,
+    "citation": "Egyptian Civil Code, Article 664",
+    "question": "When does a contract for works come to an end?",
+    "answer": "A contract for works ends if performance of the work for which it was concluded becomes impossible.",
+    "source_text_en": "A contract for works comes to an end if the performance of the work for which the contract was concluded becomes impossible."
+  },
+  {
+    "id": "article-678-q1",
+    "article_number": 678,
+    "citation": "Egyptian Civil Code, Article 678",
+    "question": "For what duration may a contract of service be concluded?",
+    "answer": "A contract of service may be for a specific service, for a fixed period, or for an indefinite duration.",
+    "source_text_en": "A contract of service may be concluded either for a specific service or for a fixed period; it may also be entered into for an indefinite duration. If a contract of service is entered for the lifetime of the worker or the master or for a period longer than five years, the worker, after the expiration of five years, may resiliate the contract without being liable to pay compensation, provided that he gives six months prior notice to the master."
+  },
+  {
+    "id": "article-687-q1",
+    "article_number": 687,
+    "citation": "Egyptian Civil Code, Article 687",
+    "question": "When are a penalty clause and restraint of competition condition void in a service contract?",
+    "answer": "They are void when the penalty clause for breach of a restraint of competition is so onerous that it pressures the worker to remain in service longer than agreed.",
+    "source_text_en": "When a contract contains a penalty clause applicable in the event of the breach of a condition in restrain of competition, and such a clause is so onerous as to be tantamount to pressure on the worker to compel him to remain in the service of the master for a longer time than that agreed, both the penalty clause and the condition in restraint of competition will be void."
+  },
+  {
+    "id": "article-713-q1",
+    "article_number": 713,
+    "citation": "Egyptian Civil Code, Article 713",
+    "question": "What rules apply to the relationship of mandator and mandatary with third parties?",
+    "answer": "Articles 104 to 107 concerning representation apply to the relationship of a mandator and mandatary with third parties dealing with the mandatary.",
+    "source_text_en": "Articles 104 to 107, with regard to representation, apply to the relationship of a mandator and of a mandatary with third parties dealing with the mandatary."
+  },
+  {
+    "id": "article-727-q1",
+    "article_number": 727,
+    "citation": "Egyptian Civil Code, Article 727",
+    "question": "For whose acts are hotel proprietors responsible when keeping travellers' effects safely?",
+    "answer": "Hotel, inn, and similar proprietors are responsible even for acts of casual frequenters of their establishments, subject to special limits for money, securities, and valuables.",
+    "source_text_en": "Proprietors of hotels, inns or other similar establishments are responsible, in the performance of their obligation to keep safely the effects brought in by travellers or residents, even for the acts of casual frequenters of their establishments. They are, however, liable, as regards sums of money, securities and articles of value, only up to a limit of L.E. unless they have undertaken the safe custody of such things knowing their value, or unless they have refused, without just cause, to take them in charge, or if the loss has been caused by their gross negligence or by the gross negligence of one of their staff."
+  },
+  {
+    "id": "article-765-q1",
+    "article_number": 765,
+    "citation": "Egyptian Civil Code, Article 765",
+    "question": "Does a life insurer who paid the sum assured become subrogated to the insured's rights?",
+    "answer": "No. In life assurance, the insurer who paid the sum assured is not subrogated to the rights of the insured or beneficiary against the person who caused or is responsible for the insured event.",
+    "source_text_en": "In life assurance, the insurer who has paid the sum assured shall not be entitled to be subrogated to the rights of the assured or of the beneficiary against the person who caused the event insured against or against the person responsible therefor."
+  },
+  {
+    "id": "article-772-q1",
+    "article_number": 772,
+    "citation": "Egyptian Civil Code, Article 772",
+    "question": "What is suretyship?",
+    "answer": "Suretyship is a contract in which a person guarantees performance of an obligation by undertaking to the creditor to fulfil it if the debtor fails to do so.",
+    "source_text_en": "Suretyship is a contract whereby a person guarantees the performance of an obligation by giving an undertaking to the creditors to fulfil such obligation should the debtor fail to do so."
+  },
+  {
+    "id": "article-800-q1",
+    "article_number": 800,
+    "citation": "Egyptian Civil Code, Article 800",
+    "question": "What may a surety who paid the debt claim from the debtor?",
+    "answer": "A surety who has paid the debt may claim against the debtor whether the suretyship was entered into with or without the debtor's knowledge. The claim includes the capital amount, interest, and expenses, but expenses are recoverable only from the date the surety notified the principal debtor of proceedings against him. The surety is also entitled to legal interest on all amounts paid from the date of payment.",
+    "source_text_en": "A surety who has paid the debt has a right of action against the debtor whether the suretyship was entered into with or without the knowledge of the debtor. This right of action includes the right to claim the capital amount of the debt, interest and expenses. The surety, however, only has a right of action in respect of those expenses which he has incurred from the date he has notified the principal debtor of the proceedings taken against him. A surety is entitled to interest at the legal rate on all amounts that he has paid from the date of payment."
+  },
+  {
+    "id": "article-824-q1",
+    "article_number": 824,
+    "citation": "Egyptian Civil Code, Article 824",
+    "question": "What is the effect of alienation contrary to a valid inalienability clause?",
+    "answer": "When the inalienability clause is valid, any alienation contrary to it is void.",
+    "source_text_en": "When the clause as to inalienability in the contract or the will is valid in accordance with the provisions of the preceding article, any alienation contrary to such clause is void."
+  },
+  {
+    "id": "article-835-q1",
+    "article_number": 835,
+    "citation": "Egyptian Civil Code, Article 835",
+    "question": "How may co-owners partition property if they all agree?",
+    "answer": "If all co-owners agree, they may divide the property held in common in whatever manner they deem fit, subject to legal formalities for legally incapable co-owners.",
+    "source_text_en": "Co-owners may, if they are all in agreement, divide the property held in common in whatever manner they deem fit. If one of them is subject to legal incapacity, the formalities laid down by law will have to be observed."
+  },
+  {
+    "id": "article-868-q1",
+    "article_number": 868,
+    "citation": "Egyptian Civil Code, Article 868",
+    "question": "What happens if a jointly owned building is destroyed?",
+    "answer": "Subject to contrary agreement, co-owners must follow the syndicate's majority decision on reconstruction, and compensation for destruction is set aside for reconstruction costs without prejudice to registered creditors.",
+    "source_text_en": "If the building is destroyed by fire or otherwise, the co- owners are, subject to any agreement to the contrary, bound to conform to the decision of the syndicate as to its reconstruction taken by the majority, as provided for in Article 864. If the syndicate decides to reconstruct the building, any amount due as compensation on account of the destruction of the building shall, without prejudice to the rights of the registered creditors, be set aside for the costs of reconstruction."
+  },
+  {
+    "id": "article-874-q1",
+    "article_number": 874,
+    "citation": "Egyptian Civil Code, Article 874",
+    "question": "Who owns uncultivated land with no owner?",
+    "answer": "Uncultivated land with no owner belongs to the State, and appropriation or possession of it requires State authority according to regulations.",
+    "source_text_en": "Uncultivated land which has no owner is the property of the State. The appropriation or the possession of uncultivated land can only be effected with the authority of the State in accordance with the regulations."
+  },
+  {
+    "id": "article-909-q1",
+    "article_number": 909,
+    "citation": "Egyptian Civil Code, Article 909",
+    "question": "When does a division made by disposition mortis causa become irrevocable?",
+    "answer": "It may always be revoked during the testator's life and becomes irrevocable upon the testator's death.",
+    "source_text_en": "A division made by disposition mortis causa may always be revoked. It becomes irrevocable on the death of the testator."
+  },
+  {
+    "id": "article-922-q1",
+    "article_number": 922,
+    "citation": "Egyptian Civil Code, Article 922",
+    "question": "Who is presumed to own buildings and plantations on land?",
+    "answer": "Buildings, plantations, and other works above or below ground are presumed to have been made by the landowner at his expense and to belong to him, unless proved otherwise.",
+    "source_text_en": "All buildings, plantations and other works existing above or below the ground are deemed to have been carried out by the owner of the land at his own expense and belong to him. It may be proved, however, that such works were made by a third party at his own expense, as it may be proved that the owner of the land has transferred the ownership of works already existing or the right to erect and own such works to a third party."
+  },
+  {
+    "id": "article-951-q1",
+    "article_number": 951,
+    "citation": "Egyptian Civil Code, Article 951",
+    "question": "Can possession be exercised through an intermediary?",
+    "answer": "Yes. Possession may be exercised through an intermediary if the intermediary acts in the possessor's name and is bound to obey the possessor's instructions regarding possession.",
+    "source_text_en": "Possession may be exercised by an intermediary, provided that he exercises it in the name of the possessor and that his relationship to the possessor is such that he is obliged to obey his instructions as regards the possession. In case of doubt, a person who is actually in possession is presumed to be in possession on his own behalf. If he continues a former possession, the continuation of such possession is presumed to be on behalf of the person who commenced the possession."
+  },
+  {
+    "id": "article-959-q1",
+    "article_number": 959,
+    "citation": "Egyptian Civil Code, Article 959",
+    "question": "When may a person who possessed for less than a year claim reinstatement after losing possession?",
+    "answer": "He may claim reinstatement if the dispossessor does not have better possession. If the loss was by violence, he may always claim restitution within one year.",
+    "source_text_en": "A person losing possession after having been in possession for less than a year can claim to be reinstated if the person dispossessing him has not a better possession than his own. The possession is better if found on a legal title. If neither possessor has a title or both possessors have titles of equal value, the better possession is that which commenced first. If the loss of possession takes place by violence, the possessor may always claim restitution within a year following the loss of possession."
+  },
+  {
+    "id": "article-979-q1",
+    "article_number": 979,
+    "citation": "Egyptian Civil Code, Article 979",
+    "question": "For which fruits is a possessor in bad faith responsible?",
+    "answer": "A possessor in bad faith is responsible for all fruits collected or not collected from the moment he became in bad faith, though he may recover expenses connected with producing the fruits.",
+    "source_text_en": "A possessor in bad faith is responsible for all the fruits that he has collected or that he has failed to collect, from the moment he became of bad faith. He may, however, claim refund of his expenses in connection with the production of fruits."
+  },
+  {
+    "id": "article-1016-q1",
+    "article_number": 1016,
+    "citation": "Egyptian Civil Code, Article 1016",
+    "question": "How is a servitude acquired?",
+    "answer": "A servitude is acquired by legal disposition or inheritance, and only apparent servitudes, including rights of way, may be acquired by prescription.",
+    "source_text_en": "The right to a servitude is acquired by a legal disposition or by inheritance. Only apparent servitudes, including rights of way, can be acquired by prescription."
+  },
+  {
+    "id": "article-1037-q1",
+    "article_number": 1037,
+    "citation": "Egyptian Civil Code, Article 1037",
+    "question": "How are fruits and revenues of mortgaged property treated after transcription of the summons to pay?",
+    "answer": "From the transcription date, fruits and revenues are assimilated to the immovable and distributed in the same way as the price of the property.",
+    "source_text_en": "From the date of the transcription of the formal summons to pay, the fruits and revenues of the mortgaged property shall be assimilated to the immovable and distributed in the same way as the price of the property."
+  },
+  {
+    "id": "article-1045-q1",
+    "article_number": 1045,
+    "citation": "Egyptian Civil Code, Article 1045",
+    "question": "When does a lease by a mortgagor have effect against the mortgagee?",
+    "answer": "A lease by a mortgagor has effect against the mortgagee only if it has an established date before transcription of the formal summons to pay. A lease without such established date, or entered after transcription without advance rent payment, has no effect against the mortgagee unless it is an act of good management. If a lease entered before transcription exceeds nine years, it affects the mortgagee only for nine years unless transcribed before inscription of the mortgage.",
+    "source_text_en": "A lease entered into by a mortgagor cannot have effect against a mortgagee unless such lease has been given an established date before the transcription of the formal summons to pay. A lease that has not an established date before this transcription or that has been entered into after the transcription of the summons, without payment of the rent having being made in advance, will not have effect as against a mortgagee, unless it may be considered to fall within the category of acts of good management. If the duration of the lease entered into before the transcription of the summons exceeds nine years, the lease has effect against the mortgagee only for nine years, unless it was transcribed before the inscription of the mortgage."
+  },
+  {
+    "id": "article-1070-q1",
+    "article_number": 1070,
+    "citation": "Egyptian Civil Code, Article 1070",
+    "question": "What happens if sale of the property is not applied for within the required period and procedures?",
+    "answer": "Ownership of the property, freed from all inscriptions, vests finally in the third-party holder if he pays or deposits the sum at which he valued the property for creditors entitled to payment.",
+    "source_text_en": "If the sale of the property is not applied for within the period and in accordance with the procedures laid down, the ownership of the property, freed from all inscriptions, shall be vested finally on the third party holder if he pays the sum at which he has valued the property to the creditors whose rank entitles them to payment, or if he deposits this sum at the Caisse of the Court."
+  },
+  {
+    "id": "article-1091-q1",
+    "article_number": 1091,
+    "citation": "Egyptian Civil Code, Article 1091",
+    "question": "What must the court greffier do on the day an order authorizing a judgment charge is rendered?",
+    "answer": "The greffier must notify the debtor, endorse the order on the authenticated judgment copy or attached certificate, and inform the court that rendered the judgment so it can endorse the order on other copies or certificates delivered to the creditor.",
+    "source_text_en": "Upon the same day as the order authorizing the judgment charge is rendered, the greffier of the Court must notify it to the debtor, endorse it on the authenticated copy of the judgment or on the certificate annexed to the application for a judgment charge, and . inform the greffier of the Court that has rendered the judgment so that he may endorse the order on any other copy of the judgment or on any other certificate that will be delivered to the creditor."
+  }
+]

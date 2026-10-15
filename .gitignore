@@ -51,3 +51,5 @@ data/raw/*.dvc
 !data/raw/law.pdf.dvc
 !data/output/
 !data/output/.gitignore
+!data/eval/
+!data/eval/golden_questions.json
