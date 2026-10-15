@@ -1,0 +1,21 @@
+preprocess:
+  raw_pdf_path: data/raw/law.pdf
+  docling_json_path: data/interim/law.docling.json
+  articles_json_path: data/output/articles.json
+chunk:
+  articles_json_path: data/output/articles.json
+  chunks_jsonl_path: data/output/chunks.jsonl
+  max_tokens_per_chunk: 256
+  chunk_overlap_tokens: 64
+embed:
+  embedding_model: qwen/qwen3-embedding-4b
+  collection_name: egyptian_civil_code_test2
+  chunks_jsonl_path: data/output/chunks.jsonl
+  chroma_persist_path: data/chroma
+eval:
+  golden_questions_path: data/eval/golden_questions.json
+  metrics_json_path: data/output/ragas_metrics.json
+  top_k: 27
+  agent_model: deepseek/deepseek-v4-pro
+  judge_model: openai/gpt-4o-mini
+  distance_threshold:

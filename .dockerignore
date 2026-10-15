@@ -1,0 +1,11 @@
+.env
+.venv
+.git
+.dvc/cache
+__pycache__
+*.pyc
+data/raw
+data/interim
+data/output
+docker/agentgateway-config/*.db
+docker/agentgateway-config/*.db-*
