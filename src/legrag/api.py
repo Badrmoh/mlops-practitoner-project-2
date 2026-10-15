@@ -124,13 +124,13 @@ def create_default_agent(settings: Settings) -> LegalRagAgent:
     retriever = LegalRetriever(
         collection_name=settings.collection_name,
         persist_path=str(settings.chroma_persist_path),
-        embedding_url=settings.embedding_url,
+        embedding_url=settings.embedding_base_url,
         embedding_model=settings.embedding_model,
         embedding_api_key=settings.embedding_api_key,
     )
     provider = OpenAIProvider(
-        base_url=settings.custom_provider_base_url,
-        api_key=settings.custom_provider_api_key,
+        base_url=settings.llm_base_url,
+        api_key=settings.llm_api_key,
     )
     model = OpenAIChatModel(settings.llm_model, provider=provider)
     return LegalRagAgent(model=model, retriever=retriever, top_k=settings.retrieval_top_k)

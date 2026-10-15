@@ -40,18 +40,15 @@ stages:
       - dvc/params.yaml:
         - embed.embedding_model
         - embed.chunks_jsonl_path
-        - embed.embed_manifest_json_path
         - embed.chroma_persist_path
     outs:
-      - data/output/embed_manifest.json:
-          cache: false
-      - data/chroma:
+      - data/chroma/chroma.sqlite3:
           cache: false
   eval:
     cmd: uv run python dvc/eval.py
     wdir: ..
     deps:
-      - data/output/embed_manifest.json
+      - data/chroma/chroma.sqlite3
       - data/eval/golden_questions.json
       - dvc/eval.py
       - src/legrag/agent/
@@ -63,14 +60,10 @@ stages:
         - embed.chroma_persist_path
         - eval.golden_questions_path
         - eval.metrics_json_path
-        - eval.results_json_path
         - eval.top_k
         - eval.agent_model
         - eval.judge_model
         - eval.distance_threshold
     metrics:
       - data/output/ragas_metrics.json:
-          cache: false
-    outs:
-      - data/output/ragas_results.json:
           cache: false

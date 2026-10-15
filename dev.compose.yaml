@@ -5,10 +5,10 @@ services:
       dockerfile: Dockerfile
     environment:
       PYTHONPATH: /app/src
-      LEGRAG_EMBEDDING_URL: http://host.docker.internal:11434/api/embed
+      LEGRAG_EMBEDDING_BASE_URL: http://host.docker.internal:11434/api/embed
       LEGRAG_EMBEDDING_MODEL: ${OLLAMA_EMBEDDING_MODEL:-qwen3-embedding:4b}
-      LEGRAG_CUSTOM_PROVIDER_BASE_URL: http://host.docker.internal:11434/v1
-      LEGRAG_CUSTOM_PROVIDER_API_KEY: ollama
+      LEGRAG_LLM_BASE_URL: http://host.docker.internal:11434/v1
+      LEGRAG_LLM_API_KEY: ollama
       LEGRAG_LLM_MODEL: ${OLLAMA_LLM_MODEL:-qwen3.5:4b}
       LEGRAG_CHROMA_PERSIST_PATH: /app/data/chroma
       LEGRAG_COLLECTION_NAME: egyptian_civil_code

@@ -18,21 +18,17 @@ class Settings(BaseSettings):
 
     # Embedding / vector store
     embedding_model: str = "qwen3-embedding:4b"
-    embedding_url: str = "http://localhost:11434/api/embed"
+    embedding_base_url: str = "http://localhost:11434/api/embed"
     embedding_api_key: str = ""
     collection_name: str = "egyptian_civil_code"
     chroma_persist_path: Path = REPO_ROOT / "data/chroma"
 
     # LLM / judge provider
-    llm_base_url: str = "http://localhost:11434"
+    llm_base_url: str = "http://localhost:11434/v1"
     llm_model: str = "qwen3.5:4b"
-    custom_provider_base_url: str = "http://localhost:11434/v1"
-    custom_provider_api_key: str = "ollama"
+    llm_api_key: str = "ollama"
     retrieval_top_k: int = 27
     reports_dir: Path = REPO_ROOT / "reports"
-
-    # Experiment tracking
-    mlflow_tracking_uri: str = ""
 
     # Chunking defaults
     chunk_overlap_tokens: int = 20
