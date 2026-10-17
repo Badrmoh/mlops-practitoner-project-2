@@ -48,7 +48,6 @@ src/legrag/agent.py
 !data/raw/
 !data/raw/.gitignore
 data/raw/*.dvc
-!data/raw/law.pdf.dvc
 !data/output/
 !data/output/.gitignore
 !data/eval/

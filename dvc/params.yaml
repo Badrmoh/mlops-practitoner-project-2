@@ -9,7 +9,7 @@ chunk:
   chunk_overlap_tokens: 64
 embed:
   embedding_model: qwen/qwen3-embedding-4b
-  collection_name: egyptian_civil_code_test2
+  collection_name: egyptian_civil_code
   chunks_jsonl_path: data/output/chunks.jsonl
   chroma_persist_path: data/chroma
 eval:
