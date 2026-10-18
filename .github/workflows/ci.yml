@@ -41,6 +41,26 @@ jobs:
           mkdir -p data/raw
           curl --fail --location --show-error "$LEGRAG_RAW_PDF_URL" --output data/raw/law.pdf
 
+      - name: Configure DVC params for CI
+        env:
+          LEGRAG_EMBEDDING_MODEL: ${{ secrets.LEGRAG_EMBEDDING_MODEL }}
+        run: |
+          uv run python - <<'PY'
+          import os
+          from pathlib import Path
+
+          import yaml
+
+          embedding_model = os.getenv("LEGRAG_EMBEDDING_MODEL")
+          if not embedding_model:
+              raise SystemExit("LEGRAG_EMBEDDING_MODEL secret is required for CI")
+
+          params_path = Path("dvc/params.yaml")
+          params = yaml.safe_load(params_path.read_text())
+          params["embed"]["embedding_model"] = embedding_model
+          params_path.write_text(yaml.safe_dump(params, sort_keys=False))
+          PY
+
       - name: Rebuild index artifacts
         env:
           LEGRAG_EMBEDDING_BASE_URL: ${{ secrets.LEGRAG_EMBEDDING_BASE_URL }}
@@ -58,7 +78,7 @@ jobs:
         run: uv run dvc --cd dvc repro eval
 
       - name: Print RAGAS metrics
-        run: cat data/output/ragas_metrics.json
+        run: uv run dvc --cd dvc metrics show
 
       - name: Gate RAGAS faithfulness
         run: >
