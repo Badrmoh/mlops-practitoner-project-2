@@ -7,11 +7,16 @@ from fastapi.responses import FileResponse, HTMLResponse, PlainTextResponse
 from pydantic import BaseModel, Field, field_validator
 from pydantic_ai.models.openai import OpenAIChatModel
 from pydantic_ai.providers.openai import OpenAIProvider
+from dotenv import load_dotenv
 
 from legrag.agent import LegalRagAgent
 from legrag.agent.retrieve import LegalRetriever
-from legrag.config import Settings
+from legrag.config import REPO_ROOT, Settings
 from legrag.store import ChromaVectorStore
+
+load_dotenv(REPO_ROOT / ".env")
+
+from langfuse import get_client, observe
 
 
 class AskRequest(BaseModel):
@@ -158,12 +163,18 @@ def create_app(
     def index() -> str:
         return INDEX_HTML
 
-    @app.post("/ask", response_model=AskResponse)
-    def ask(request: AskRequest) -> AskResponse:
+    @observe(name="api.ask", as_type="span")
+    def ask_observed(request: AskRequest) -> AskResponse:
         if app.state.agent is None:
             app.state.agent = app.state.create_agent()
         result = app.state.agent.answer(request.question)
         return AskResponse(answer=result.answer, sources=article_sources(result))
+
+    @app.post("/ask", response_model=AskResponse)
+    def ask(request: AskRequest) -> AskResponse:
+        response = ask_observed(request)
+        get_client().flush()
+        return response
 
     @app.get("/health", response_model=HealthResponse)
     def health() -> HealthResponse:

@@ -21,7 +21,7 @@ Legend:
 | ✅ | README has 3 commands to run Q&A on any machine | `README.md` includes `docker compose up`, `/health`, and `/ask` curl commands. |
 | ✅ | MLflow logs each config: chunk size, overlap, embedding model, faithfulness | `dvc/eval.py` logs params and metrics when `MLFLOW_TRACKING_URI` is set. |
 | ✅ | At least 5 runs compared; MLflow screenshot in `reports/` | Evidence file: `reports/mlflow_experiments.png`. Best run summary: `reports/mlflow_best_run.md`. |
-| ❌ | Best chunking config registered in the MLflow Registry | No model/registered artifact registry evidence found. Current best config is documented and pinned in `dvc/params.yaml`, but not registered in MLflow Registry. |
+| ✅ | Best chunking config registered in the MLflow Registry | Registered as `legrag-best-chunking-config` with alias `best`; evidence file: `reports/registered-model.png`. Registration helper: `scripts/register_best_config.py`. |
 | ⚠️ | Source PDF and derived JSON both tracked with DVC; `dvc pull` fetches them; `dvc repro` rebuilds JSON from PDF | `data/output/articles.json` is tracked as a DVC stage output through `dvc/dvc.yaml`/`dvc/dvc.lock`. Source PDF is now downloaded in CI from `LEGRAG_RAW_PDF_URL`, not tracked with a `.dvc` file. |
 | ✅ | `dvc repro` re-indexes the corpus reproducibly from tracked/configured documents | `dvc --cd dvc repro preprocess chunk embed` rebuilds preprocess/chunk/embed stages from `data/raw/law.pdf` and params. CI downloads the PDF before running DVC. |
 | ✅ | GitHub Actions: lint → test → rebuild index → push Docker image | `.github/workflows/ci.yml` runs Pyright, pytest, raw PDF download, DVC rebuild/eval, and Docker build/push on `main` pushes. |
@@ -40,7 +40,7 @@ Legend:
 | ⚠️ | RAGAS on at least 50 questions; all 4 metrics logged | Current eval uses `data/eval/golden_questions.json` and logs RAGAS faithfulness plus custom retrieval/answer metrics. It does not log all four standard RAGAS metrics. |
 | ✅ | RAGAS results stored in MLflow; trend visible across sessions | `dvc/eval.py` logs metrics to MLflow when `MLFLOW_TRACKING_URI` is configured. Evidence: `reports/mlflow_experiments.png`. |
 | ❌ | Alert: faithfulness `< 0.80` triggers notification | No alerting/notification config found. CI gate is `< 0.75`, not `< 0.80`. |
-| ❌ | Langfuse self-hosted; every `/ask` creates a trace with spans | Not implemented. |
+| ✅ | Langfuse self-hosted; every `/ask` creates a trace with spans | `/ask` is wrapped with Langfuse `@observe` in `src/legrag/api.py`; `.env.example` documents `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_SECRET_KEY`, and `LANGFUSE_BASE_URL`. Verified manually against the self-hosted Langfuse instance. |
 | ❌ | RAGAS faithfulness score attached to each Langfuse trace | Not implemented. |
 | ❌ | Cosine similarity on query embeddings vs baseline; drift logged | Not implemented. |
 | ❌ | Token usage in Prometheus; Grafana shows cost/hour | Not implemented. |
@@ -52,6 +52,6 @@ Legend:
 
 1. Source PDF is no longer DVC-tracked directly; CI downloads it with `curl` from `LEGRAG_RAW_PDF_URL`.
 2. Chroma tracking is intentionally left imperfect for now because Chroma mutates its storage files on access.
-3. MLflow Registry registration is not implemented; best config is documented in reports and pinned in `dvc/params.yaml`.
-4. Serving/monitoring optimization items such as BentoML, vLLM, streaming, Locust, Langfuse, Prometheus/Grafana, and quantization are not implemented yet.
+3. MLflow Registry registration is complete for the best chunking config, with evidence in `reports/registered-model.png`.
+4. Serving/monitoring optimization items such as BentoML, vLLM, streaming, Locust, Langfuse metrics/scoring, Prometheus/Grafana, and quantization are not implemented yet.
 5. CI can fail from provider rate limits because eval calls external embedding/LLM APIs.
