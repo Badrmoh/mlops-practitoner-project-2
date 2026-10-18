@@ -201,6 +201,7 @@ def main() -> None:
 
             metrics = run_exp(settings, params)
             mlflow.log_metrics(metrics)
+            mlflow.log_artifact("dvc/params.yaml", artifact_path="config")
     else:
         _ = run_exp(settings, params)
 

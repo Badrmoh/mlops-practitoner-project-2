@@ -75,27 +75,27 @@ stages:
       dvc/params.yaml:
         embed.chroma_persist_path: data/chroma
         embed.chunks_jsonl_path: data/output/chunks.jsonl
-        embed.embedding_model: qwen/qwen3-embedding-4b
+        embed.embedding_model: qwen3-embedding:4b
     outs:
     - path: data/chroma/chroma.sqlite3
       hash: md5
-      md5: 13de93d95682f09bd919bb037f3dbf37
-      size: 20316160
+      md5: 95ba76a7444ca979ed594c5e9090a670
+      size: 20312064
   eval:
     cmd: uv run python dvc/eval.py
     deps:
     - path: data/chroma/chroma.sqlite3
       hash: md5
-      md5: 879f86be1f2c405c9b2ada654c2024f1
-      size: 20316160
+      md5: b1675851cc93762ecb654238d37c52cf
+      size: 20312064
     - path: data/eval/golden_questions.json
       hash: md5
       md5: 1745cdf4be6d38c1b2fc011c742667d3
       size: 38621
     - path: dvc/eval.py
       hash: md5
-      md5: a70bdad8866d0087d1e4e6421cdf708f
-      size: 8759
+      md5: b57e3d4f7f92a9adc9539ebb9d2a21d3
+      size: 8834
     - path: src/legrag/agent/
       hash: md5
       md5: 16ca48d2012f326c3b701fbe65dd1860.dir
@@ -103,13 +103,13 @@ stages:
       nfiles: 15
     - path: src/legrag/store.py
       hash: md5
-      md5: acbfb42035b9e12f32b5ba0b7b31ef7c
-      size: 2486
+      md5: 39985b49b1cd5f140434eeb1abf0b286
+      size: 2513
     params:
       dvc/params.yaml:
         embed.chroma_persist_path: data/chroma
-        embed.collection_name: egyptian_civil_code_test2
-        embed.embedding_model: qwen/qwen3-embedding-4b
+        embed.collection_name: egyptian_civil_code
+        embed.embedding_model: qwen3-embedding:4b
         eval.agent_model: deepseek/deepseek-v4-pro
         eval.distance_threshold:
         eval.golden_questions_path: data/eval/golden_questions.json
@@ -119,5 +119,5 @@ stages:
     outs:
     - path: data/output/ragas_metrics.json
       hash: md5
-      md5: 37390cf22bff382fddb761923d842d6a
-      size: 615
+      md5: 281a4b09ad3cd6b5a36aada6a9c56678
+      size: 616
