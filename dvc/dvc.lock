@@ -26,10 +26,6 @@ stages:
       hash: md5
       md5: 50b09fa4e89c6d724ac459ce7b481fd3
       size: 46471889
-    - path: data/output/articles.json
-      hash: md5
-      md5: ce56ebaa21fd8846d5473879f378ff42
-      size: 1268304
   chunk:
     cmd: uv run python dvc/chunk.py
     deps:

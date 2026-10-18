@@ -13,7 +13,6 @@ stages:
       - preprocess.articles_json_path
     outs:
     - data/interim/law.docling.json
-    - data/output/articles.json
      
   chunk:
     cmd: uv run python dvc/chunk.py
