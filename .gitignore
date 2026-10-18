@@ -18,7 +18,7 @@ dist/
 *.egg-info/
 
 # Generated data and extraction outputs
-data/
+data/*
 scratch/
 *.json
 *.txt
@@ -31,8 +31,25 @@ debug*.txt
 
 # Local scratch scripts/files
 test.py
+/scripts
 
 # OS/editor files
 .DS_Store
 .idea/
 .vscode/
+
+# Local service state
+docker/agentgateway-config/*.db
+docker/agentgateway-config/*.db-*
+s.sh
+src/legrag/agent.py
+
+# DVC metadata and review artifacts committed despite broad local data ignores
+!data/raw/
+!data/raw/.gitignore
+data/raw/*.dvc
+!data/output/
+!data/output/articles.json
+!data/output/.gitignore
+!data/eval/
+!data/eval/golden_questions.json
