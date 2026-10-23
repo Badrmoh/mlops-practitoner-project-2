@@ -31,7 +31,8 @@ debug*.txt
 
 # Local scratch scripts/files
 test.py
-/scripts
+/scripts/*
+!/scripts/setup_ollama.sh
 
 # OS/editor files
 .DS_Store
