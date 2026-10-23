@@ -2,7 +2,8 @@ name: CI
 
 on:
   push:
-    branches: [main,dev]
+    tags:
+      - "*"
   pull_request:
 
 permissions:
@@ -85,11 +86,14 @@ jobs:
           uv run python -c
           "import json; m=json.load(open('data/output/ragas_metrics.json')); score=float(m['ragas_faithfulness']); assert score >= 0.75, f'RAGAS faithfulness {score:.3f} < 0.75'"
 
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
       - name: Log in to GHCR
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
@@ -97,10 +101,11 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build Docker image
-        if: github.event_name != 'push'
+        if: github.event_name == 'pull_request'
         run: docker buildx bake -f docker-bake.hcl app
 
       - name: Build and push Docker image
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
         run: >
           docker buildx bake -f docker-bake.hcl app --push
+          --set app.tags=ghcr.io/${{ github.repository }}/legrag:${{ github.ref_name }},ghcr.io/${{ github.repository }}/legrag:latest
