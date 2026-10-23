@@ -104,4 +104,3 @@ jobs:
         if: github.event_name == 'push'
         run: >
           docker buildx bake -f docker-bake.hcl app --push
-          --set app.tags=ghcr.io/${{ github.repository }}/legrag:${{ github.sha }},ghcr.io/${{ github.repository }}/legrag:latest
