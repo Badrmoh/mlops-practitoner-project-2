@@ -25,7 +25,17 @@ ollama serve
 
 If Ollama is already running, do not start a second `ollama serve` process.
 
-Create `.env` from `.env.example`, then complete these three steps.
+### Automated Ollama setup
+
+Run the setup script from the repository root:
+
+```bash
+./scripts/setup_ollama.sh
+```
+
+The script starts Ollama on port `11434` if needed, downloads `qwen3-embedding:4b` and `qwen3.5:4b`, and patiently warms each model with retries while Ollama loads it. Warm-up requests allow up to five minutes per attempt and use an unlimited keep-alive. The script then verifies that both models appear in `ollama ps`, writes the Docker-compatible Ollama settings to `.env`, and starts `docker compose up`. Existing unrelated `.env` values, including optional Langfuse credentials, are preserved.
+
+For manual or custom-provider setup, create `.env` from `.env.example`, then complete these three steps.
 
 ### 1. Configure the LLM
 
