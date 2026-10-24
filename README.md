@@ -33,7 +33,7 @@ Run the setup script from the repository root:
 ./scripts/setup_ollama.sh
 ```
 
-The script starts Ollama on port `11434` if needed, downloads `qwen3-embedding:4b` and `qwen3.5:4b`, and patiently warms each model with retries while Ollama loads it. Warm-up requests allow up to five minutes per attempt and use an unlimited keep-alive. The script then verifies that both models appear in `ollama ps`, writes the Docker-compatible Ollama settings to `.env`, and starts `docker compose up`. Existing unrelated `.env` values, including optional Langfuse credentials, are preserved.
+The script starts Ollama on port `11434` if needed, downloads `qwen3-embedding:4b` and `qwen3.5:4b`, and patiently warms each model with retries while Ollama loads it. Warm-up requests allow up to five minutes per attempt. It then creates `qwen3.5:4b-32k`, a derived model with a 32k-token context window: Ollama's 4096-token default is smaller than the 27-chunk RAG prompt, which truncates the structured answer and makes `/ask` fail with a token-limit error. The script writes the Docker-compatible Ollama settings to `.env` immediately after the downloads, verifies that both models are installed, and starts `docker compose up`. Existing unrelated `.env` values, including optional Langfuse credentials, are preserved. Only residency in `ollama ps` is not required: on GPUs that cannot hold both models at once, Ollama evicts one when the other is requested.
 
 For manual or custom-provider setup, create `.env` from `.env.example`, then complete these three steps.
 
