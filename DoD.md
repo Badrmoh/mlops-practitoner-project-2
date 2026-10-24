@@ -20,8 +20,8 @@ Legend:
 | ✅ | Dockerfile includes vector store and embedded documents; `docker compose up` starts on port `8000` | `Dockerfile` copies `data/chroma` into `/app/data/chroma`; `compose.yaml` maps `8000:8000`. |
 | ✅ | README has 3 commands to run Q&A on any machine | `README.md` includes `docker compose up`, `/health`, and `/ask` curl commands. |
 | ✅ | MLflow logs each config: chunk size, overlap, embedding model, faithfulness | `dvc/eval.py` logs params and metrics when `MLFLOW_TRACKING_URI` is set. |
-| ✅ | At least 5 runs compared; MLflow screenshot in `reports/` | Evidence file: `reports/mlflow_experiments.png`. Best run summary: `reports/mlflow_best_run.md`. |
-| ✅ | Best chunking config registered in the MLflow Registry | Registered as `legrag-best-chunking-config` with alias `best`; evidence file: `reports/registered-model.png`. Registration helper: `scripts/register_best_config.py`. |
+| ✅ | At least 5 runs compared; MLflow screenshot in `reports/` | Evidence file: `reports/0-mlflow_experiments.png`. The best-run summary is embedded in `README.md`. |
+| ✅ | Best chunking config registered in the MLflow Registry | Registered as `legrag-best-chunking-config` with alias `best`; evidence file: `reports/2-registered-model.png`. Registration helper: `scripts/register_best_config.py`. |
 | ⚠️ | Source PDF and derived JSON both tracked with DVC; `dvc pull` fetches them; `dvc repro` rebuilds JSON from PDF | Source PDF is downloaded in CI from `LEGRAG_RAW_PDF_URL`, not tracked with a `.dvc` file. `data/output/articles.json` is committed to Git to satisfy the structured-JSON deliverable, so it is intentionally not declared as a DVC output; `chunk` tracks it as a dependency. |
 | ✅ | `dvc repro` re-indexes the corpus reproducibly from tracked/configured documents | `dvc --cd dvc repro preprocess chunk embed` rebuilds preprocess/chunk/embed stages from `data/raw/law.pdf` and params. CI downloads the PDF before running DVC. |
 | ✅ | GitHub Actions: lint → test → rebuild index → push Docker image | `.github/workflows/ci.yml` runs Pyright, pytest, raw PDF download, DVC rebuild/eval, and Docker build/push on `main` pushes. |
@@ -46,7 +46,7 @@ Legend:
 | ❌ | Token usage in Prometheus; Grafana shows cost/hour | Not implemented. |
 | ⚠️ | Guardrails / PII detection active on all `/ask` responses | Instruction-level legal answer guardrails exist in `src/legrag/agent/capabilities.py`. PII detection is not implemented. |
 | ❌ | RAGAS scores: original vs quantized; faithfulness drop `<= 0.03` | Not implemented. |
-| ✅ | Final architecture diagram covering project components | Architecture files exist in `reports/architecture.md`, `reports/architecture.mmd`, and `reports/architecture.svg`. |
+| ✅ | Final architecture diagram covering project components | The Mermaid architecture is embedded directly in `README.md`. |
 
 ## Current Known Gaps
 
