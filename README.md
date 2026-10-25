@@ -20,7 +20,7 @@ When using Ollama, keep it running on the configured port (`11434` by default) a
 ```bash
 ollama pull qwen3-embedding:4b
 ollama pull qwen3.5:4b
-ollama serve
+OLLAMA_CONTEXT_LENGTH=32768 ollama serve
 ```
 
 If Ollama is already running, do not start a second `ollama serve` process.
@@ -33,7 +33,7 @@ Run the setup script from the repository root:
 ./scripts/setup_ollama.sh
 ```
 
-The script starts Ollama on port `11434` if needed, downloads `qwen3-embedding:4b` and `qwen3.5:4b`, and patiently warms each model with retries while Ollama loads it. Warm-up requests allow up to five minutes per attempt. It then creates `qwen3.5:4b-32k`, a derived model with a 32k-token context window: Ollama's 4096-token default is smaller than the 27-chunk RAG prompt, which truncates the structured answer and makes `/ask` fail with a token-limit error. The script writes the Docker-compatible Ollama settings to `.env` immediately after the downloads, verifies that both models are installed, and starts `docker compose up`. Existing unrelated `.env` values, including optional Langfuse credentials, are preserved. Only residency in `ollama ps` is not required: on GPUs that cannot hold both models at once, Ollama evicts one when the other is requested.
+The script sets `OLLAMA_CONTEXT_LENGTH=32768`, starts Ollama on port `11434` if needed, downloads `qwen3-embedding:4b` and `qwen3.5:4b`, and patiently warms each model with retries while Ollama loads it. Warm-up requests allow up to five minutes per attempt. The script writes the Docker-compatible Ollama settings to `.env`, verifies that both models are installed, and starts `docker compose up`. Existing unrelated `.env` values, including optional Langfuse credentials, are preserved. If Ollama is already running, restart it with `OLLAMA_CONTEXT_LENGTH=32768` so the server process receives the setting.
 
 For manual or custom-provider setup, create `.env` from `.env.example`, then complete these three steps.
 
@@ -43,7 +43,7 @@ Choose one provider.
 
 #### Local Ollama
 
-The API runs in Docker, so use `host.docker.internal` rather than `localhost`. Pydantic AI uses Ollama's OpenAI-compatible `/v1` API:
+The API runs in Docker, so use `host.docker.internal` rather than `localhost`. Pydantic AI sends generation requests to Ollama's OpenAI-compatible `/v1/chat/completions` endpoint:
 
 ```env
 LEGRAG_LLM_BASE_URL=http://host.docker.internal:11434/v1
@@ -59,7 +59,7 @@ LEGRAG_LLM_MODEL=deepseek/deepseek-v4-pro
 LEGRAG_LLM_API_KEY=<your-openrouter-api-key>
 ```
 
-Any compatible provider may be used by setting its base URL, model name, and API key.
+Any compatible provider may be used by setting its base URL, model name, and API key. The application does not call `/v1/models`; a 404 from that optional Ollama endpoint does not prevent `/v1/chat/completions` from working.
 
 ### 2. Configure embeddings
 
@@ -201,6 +201,8 @@ flowchart LR
 
 
 ## Reports
+
+Each CI run publishes an Actions job summary and a downloadable evaluation artifact containing aggregate RAGAS metrics, per-question golden-dataset results, pytest output, and the evaluated DVC configuration.
 
 Current report artifacts:
 
