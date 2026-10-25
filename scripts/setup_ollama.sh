@@ -5,14 +5,8 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 ENV_FILE="$ROOT_DIR/.env"
 OLLAMA_URL="http://localhost:11434"
 EMBEDDING_MODEL="Qwen3-Embedding:4b"
-LLM_BASE_MODEL="qwen3.5:4b"
-# Ollama defaults to a 4096-token context window. The RAG prompt (27 chunks) already
-# uses ~3500 tokens, so the structured answer gets truncated mid-JSON and /ask fails
-# with "Model token limit ... exceeded before any response was generated". Bake a
-# larger window into a derived model so it survives Ollama restarts and does not
-# depend on how the server was started.
-LLM_CONTEXT=32768
-LLM_MODEL="$LLM_BASE_MODEL-32k"
+LLM_MODEL="qwen3.5:4b"
+export OLLAMA_CONTEXT_LENGTH="${OLLAMA_CONTEXT_LENGTH:-32768}"
 # Bounded keep-alive: pinning both models forever makes Ollama thrash them in and
 # out of VRAM on GPUs that cannot hold both at once.
 KEEP_ALIVE="5m"
@@ -28,6 +22,28 @@ if ! docker compose version >/dev/null 2>&1; then
   echo "Docker Compose is required." >&2
   exit 1
 fi
+
+write_env() {
+  local tmp_env
+  tmp_env="$(mktemp)"
+
+  if [[ -f "$ENV_FILE" ]]; then
+    grep -Ev '^(LEGRAG_EMBEDDING_BASE_URL|LEGRAG_EMBEDDING_MODEL|LEGRAG_EMBEDDING_API_KEY|LEGRAG_LLM_BASE_URL|LEGRAG_LLM_MODEL|LEGRAG_LLM_API_KEY)=' "$ENV_FILE" >"$tmp_env" || true
+  fi
+
+  cat >>"$tmp_env" <<EOF
+LEGRAG_EMBEDDING_BASE_URL=http://host.docker.internal:11434/api/embed
+LEGRAG_EMBEDDING_MODEL=$EMBEDDING_MODEL
+LEGRAG_EMBEDDING_API_KEY=
+LEGRAG_LLM_BASE_URL=http://host.docker.internal:11434/v1
+LEGRAG_LLM_MODEL=$LLM_MODEL
+LEGRAG_LLM_API_KEY=ollama
+EOF
+  mv "$tmp_env" "$ENV_FILE"
+  echo "Wrote Ollama configuration to $ENV_FILE"
+}
+
+write_env
 
 if ! curl --fail --silent "$OLLAMA_URL/api/tags" >/dev/null 2>&1; then
   echo "Starting Ollama on $OLLAMA_URL..."
@@ -50,33 +66,7 @@ fi
 
 echo "Downloading Ollama models..."
 ollama pull "$EMBEDDING_MODEL"
-ollama pull "$LLM_BASE_MODEL"
-
-modelfile="$(mktemp)"
-cat >"$modelfile" <<EOF
-FROM $LLM_BASE_MODEL
-PARAMETER num_ctx $LLM_CONTEXT
-EOF
-echo "Creating $LLM_MODEL with a $LLM_CONTEXT-token context window..."
-ollama create "$LLM_MODEL" -f "$modelfile"
-rm -f "$modelfile"
-
-tmp_env="$(mktemp)"
-if [[ -f "$ENV_FILE" ]]; then
-  grep -Ev '^(LEGRAG_EMBEDDING_BASE_URL|LEGRAG_EMBEDDING_MODEL|LEGRAG_EMBEDDING_API_KEY|LEGRAG_LLM_BASE_URL|LEGRAG_LLM_MODEL|LEGRAG_LLM_API_KEY)=' "$ENV_FILE" >"$tmp_env" || true
-fi
-
-cat >>"$tmp_env" <<EOF
-LEGRAG_EMBEDDING_BASE_URL=http://host.docker.internal:11434/api/embed
-LEGRAG_EMBEDDING_MODEL=$EMBEDDING_MODEL
-LEGRAG_EMBEDDING_API_KEY=
-LEGRAG_LLM_BASE_URL=http://host.docker.internal:11434/v1
-LEGRAG_LLM_MODEL=$LLM_MODEL
-LEGRAG_LLM_API_KEY=ollama
-EOF
-mv "$tmp_env" "$ENV_FILE"
-
-echo "Wrote Ollama configuration to $ENV_FILE"
+ollama pull "$LLM_MODEL"
 
 warm_model() {
   local label="$1"

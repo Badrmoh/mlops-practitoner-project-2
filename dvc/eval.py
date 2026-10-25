@@ -104,11 +104,14 @@ def run_exp(settings: Settings, params: dict[str, Any]) -> dict[str, float | int
     run_config = RunConfig(timeout=300, max_workers=1, max_retries=1)
     ragas_result = evaluate(dataset, metrics=[faithfulness], llm=judge_llm, run_config=run_config)
     scores = ragas_result.to_pandas()
+    raw_faithfulness_scores = scores["faithfulness"].tolist()
     faithfulness_scores = [
         float(score)
-        for score in scores["faithfulness"].tolist()
+        for score in raw_faithfulness_scores
         if score == score
     ]
+    for result, score in zip(detailed_results, raw_faithfulness_scores):
+        result["ragas_faithfulness"] = float(score) if score == score else None
     faithfulness_mean = sum(faithfulness_scores) / len(faithfulness_scores)
 
     num_questions = len(questions)
@@ -172,6 +175,8 @@ def run_exp(settings: Settings, params: dict[str, Any]) -> dict[str, float | int
     }
 
     metrics_path.write_text(json.dumps(metrics, ensure_ascii=False, indent=2), encoding="utf-8")
+    results_path = metrics_path.with_name("ragas_results.json")
+    results_path.write_text(json.dumps(detailed_results, ensure_ascii=False, indent=2), encoding="utf-8")
 
     return metrics
 
